@@ -36,6 +36,13 @@ router.beforeEach(async (to, from, next) => {
 	document.title = to.meta.title ? `${to.meta.title} - ${config.APP_NAME}` : `${config.APP_NAME}`
 
 	let token = tool.data.get("TOKEN");
+	let lockScreen = tool.data.get('lockScreen')
+	
+	if (lockScreen && to.name !== 'lockScreen') {
+		next({ name: 'lockScreen' })
+	} else if (! lockScreen && to.name === 'lockScreen' ) {
+		next({ path: config.DASHBOARD_URL })
+	}
 
 	if(to.path === "/login"){
 		//删除路由(替换当前layout路由)
