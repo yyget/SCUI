@@ -21,7 +21,7 @@ const routes = [
 		name: 'lockScreen',
 		component: () => import(/* webpackChunkName: "lockScreen" */ '@/views/userCenter/lockScreen'),
 		meta: {
-			title: "锁屏"
+			title: "锁屏" 
 		}
 	}
 ]

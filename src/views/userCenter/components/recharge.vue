@@ -18,7 +18,7 @@
       title: {
         type: String,
         default: () => 'SCUI',
-      }
+      } 
     }
   };
 </script>

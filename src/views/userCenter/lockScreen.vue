@@ -12,7 +12,7 @@
         </div>
       </div>
       
-      <recharge title="SCUI" />
+      <recharge title="SCUI" /> 
 
       <div class="local-time">
         <div class="time">{{ date }}</div>

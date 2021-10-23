@@ -160,7 +160,6 @@
 				}).then(({ value }) => {
 					this.$TOOL.data.set('lockPassword', this.$TOOL.crypto.MD5(value))
         			this.$TOOL.data.set('lockScreen', true)
-					
 					this.$router.push('/lockScreen')
 				})
 			},
