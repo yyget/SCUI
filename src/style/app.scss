@@ -93,3 +93,6 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);box-sizing: bo
 .adminui-tags li.sortable-ghost {opacity: 0;}
 
 .adminui-main {overflow: auto;background-color: #f6f8f9;flex: 1;}
+
+/*el-dropdown-menu divided格式不正确*/
+.el-dropdown-menu--small .el-dropdown-menu__item.el-dropdown-menu__item--divided:before {margin: 0 0px!important;}
