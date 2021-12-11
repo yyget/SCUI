@@ -13,7 +13,7 @@
 			<el-table v-bind="$attrs" :data="tableData" :row-key="rowKey" :key="toggleIndex" ref="scTable" :height="height=='auto'?null:'100%'" :size="config.size" :border="config.border" :stripe="config.stripe" :summary-method="remoteSummary?remoteSummaryMethod:summaryMethod" @sort-change="sortChange" @filter-change="filterChange">
 				<slot></slot>
 				<template v-for="(item, index) in userColumn" :key="index">
-					<el-table-column v-if="!item.hide" :column-key="item.prop" :label="item.label" :prop="item.prop" :width="item.width" :sortable="item.sortable" :fixed="item.fixed" :filters="item.filters" :filter-method="remoteFilter||!item.filters?null:filterHandler">
+					<el-table-column v-if="!item.hide" :column-key="item.prop" :label="item.label" :prop="item.prop" :min-width="item.width" :sortable="item.sortable" :fixed="item.fixed" :filters="item.filters" :filter-method="remoteFilter||!item.filters?null:filterHandler">
 						<template #default="scope">
 							<slot :name="item.prop" v-bind="scope">
 								{{scope.row[item.prop]}}
@@ -33,7 +33,7 @@
 			</div>
 			<div class="scTable-do" v-if="!hideDo">
 				<el-button v-if="!hideRefresh" @click="refresh" icon="el-icon-refresh" circle style="margin-left:15px"></el-button>
-				<el-popover v-if="column" placement="top" title="列设置" :width="500" trigger="click" :hide-after="0" @show="customColumnShow=true" @after-leave="customColumnShow=false">
+				<el-popover v-if="column" placement="top" title="列设置" :width="initWidth" trigger="click" :hide-after="0" @show="customColumnShow=true" @after-leave="customColumnShow=false">
 					<template #reference>
 						<el-button icon="el-icon-set-up" circle style="margin-left:15px"></el-button>
 					</template>
@@ -93,6 +93,7 @@
 			hideRefresh: { type: Boolean, default: false },
 			hideSetting: { type: Boolean, default: false },
 			paginationLayout: { type: String, default: "total, prev, pager, next, jumper" },
+			initWidth: {type: Number, default: 500}
 		},
 		watch: {
 			//监听从props里拿到值了
@@ -101,6 +102,11 @@
 				this.total = this.tableData.length;
 			},
 			apiObj(){
+				this.tableParams = this.params;
+				this.refresh();
+			},
+			// 监听查询条件
+			params() {
 				this.tableParams = this.params;
 				this.refresh();
 			}
