@@ -170,6 +170,7 @@
 			'config.lang'(val){
 				this.$i18n.locale = val
 				this.$TOOL.data.set("APP_LANG", val);
+				document.querySelector('html').setAttribute('lang', val)
 			},
 			'config.colorPrimary'(val){
 				document.documentElement.style.setProperty('--el-color-primary', val);
