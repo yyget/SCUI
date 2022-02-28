@@ -31,4 +31,6 @@ const i18n = createI18n({
 	messages,
 })
 
+document.querySelector('html').setAttribute('lang', tool.data.get("APP_LANG") || sysConfig.LANG)
+
 export default i18n;
