@@ -12,8 +12,8 @@
 								<span class="label">{{ node.label }}</span>
 								<span class="code">{{ data.code }}</span>
 								<span class="do">
-									<el-icon @click.stop="dicEdit(data)"><el-icon-edit /></el-icon>
-									<el-icon @click.stop="dicDel(node, data)"><el-icon-delete /></el-icon>
+									<el-icon @click.stop="dicEdit(data)" :size="25"><el-icon-edit /></el-icon>
+									<el-icon @click.stop="dicDel(node, data)" :size="25"><el-icon-delete /></el-icon>
 								</span>
 							</span>
 						</template>
