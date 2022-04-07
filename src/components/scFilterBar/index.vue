@@ -159,7 +159,11 @@
 					this.$message.warning('无过滤项');
 					return false
 				}
-				const filterNum = this.fields[this.filter.length] || this.fields[0]
+				if (this.filter.length >= this.fields.length) {
+					this.$message.warning('没有更多过滤项了')
+					return false
+				}
+				const filterNum = this.fields.filter(item => !item.disabled)[0]
 				this.filter.push({
 					field: filterNum,
 					operator: filterNum.operator || 'include',
