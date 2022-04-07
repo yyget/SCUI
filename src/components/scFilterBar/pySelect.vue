@@ -9,7 +9,7 @@
 
 <template>
 	<el-select v-bind="$attrs" :filter-method="filterMethod" @visible-change="visibleChange">
-		<el-option v-for="field in optionsList" :key="field.value" :label="field.label" :value="field"></el-option>
+		<el-option v-for="field in optionsList" :key="field.value" :label="field.label" :value="field" :disabled="field.disabled"></el-option>
 	</el-select>
 </template>
 
