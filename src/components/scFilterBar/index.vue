@@ -159,16 +159,22 @@
 					this.$message.warning('无过滤项');
 					return false
 				}
-				const filterNum = this.fields[this.filter.length] || this.fields[0]
+				if (this.filter.length >= this.fields.length) {
+					this.$message.warning('没有更多过滤项了')
+					return false
+				}
+				const filterNum = this.fields.filter(item => !item.disabled)[0]
 				this.filter.push({
 					field: filterNum,
 					operator: filterNum.operator || 'include',
 					value: ''
 				})
+				this.resetOptions()
 			},
 			//删除过滤项
 			delFilter(index){
 				this.filter.splice(index, 1)
+				this.resetOptions()
 			},
 			//过滤项字段变更事件
 			fieldChange(tr){
@@ -179,6 +185,7 @@
 				})
 				tr.operator = tr.field.operator || 'include'
 				tr.value = ''
+				this.resetOptions()
 			},
 			//下拉框显示事件处理异步
 			async visibleChange(isopen, item){
@@ -276,6 +283,15 @@
 				this.filter = []
 				this.filterObjLength = 0
 				this.$emit('filterChange',this.filterObj)
+			},
+			//重置选项是否禁用
+			resetOptions() {
+				this.fields.forEach((i) => { i.disabled = false })
+				this.filter.forEach((item) => {
+					this.fields.forEach((i) => {
+						if (i.label == item.field.label) i.disabled = true
+					})
+				})
 			}
 		}
 	}
