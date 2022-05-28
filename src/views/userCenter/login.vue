@@ -164,7 +164,7 @@
 				this.islogin = true
 				var data = {
 					username: this.ruleForm.user,
-					password: this.$TOOL.crypto.MD5(this.ruleForm.password)
+					password: this.$TOOL.crypto.AES.encrypt(this.ruleForm.password, this.$CONFIG.AES_SECRET_KEY)
 				}
 				//获取token
 				var user = await this.$API.auth.token.post(data)
