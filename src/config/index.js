@@ -48,6 +48,9 @@ const DEFAULT_CONFIG = {
 	//主题颜色
 	COLOR: '',
 
+	// AES加密，默认的AES 密码
+	AES_SECRET_KEY: "this_is_default_AES_SECRET_KEY_MUST_change_it!",
+
 	//控制台首页默认布局
 	DEFAULT_GRID: {
 		//默认分栏数量和宽度 例如 [24] [18,6] [8,8,8] [6,12,6]
