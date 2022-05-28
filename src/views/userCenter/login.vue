@@ -162,9 +162,16 @@
 				if(!validate){ return false }
 
 				this.islogin = true
+                let encrypted_password = "";
+                if(this.$CONFIG.AES_SECRET_KEY){
+                     encrypted_password = this.$TOOL.crypto.AES.encrypt(this.ruleForm.password, this.$CONFIG.AES_SECRET_KEY)
+                }
+                else{
+                    encrypted_password = this.$TOOL.crypto.MD5(this.ruleForm.password)
+                }
 				var data = {
 					username: this.ruleForm.user,
-					password: this.$TOOL.crypto.AES.encrypt(this.ruleForm.password, this.$CONFIG.AES_SECRET_KEY)
+					password: encrypted_password
 				}
 				//获取token
 				var user = await this.$API.auth.token.post(data)
