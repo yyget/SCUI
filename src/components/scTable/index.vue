@@ -73,7 +73,8 @@
 		},
 		props: {
 			tableName: { type: String, default: "" },
-			apiObj: { type: Object, default: () => {} },
+			apiObj: { type: Object, default: () => { } },
+			autoLoad: { type: Boolean, default: true },
 			params: { type: Object, default: () => ({}) },
 			data: { type: Object, default: () => {} },
 			height: { type: [String,Number], default: "100%" },
@@ -145,7 +146,7 @@
 				this.userColumn = this.column
 			}
 			//判断是否静态数据
-			if(this.apiObj){
+			if(this.apiObj && this.autoLoad){
 				this.getData();
 			}else if(this.data){
 				this.tableData = this.data;
