@@ -6,6 +6,12 @@
 			</sc-upload-file>
 		</el-card>
 
+		<el-card shadow="never" header="大文件上传示例">
+			<sc-upload-large-file v-model="largeFileurl" :limit="12" :maxSize="1024" :data="{otherData:'demo'}" tip="最多上传2个文件,单个文件不要超过1GB">
+				<el-button type="primary" icon="el-icon-upload">上传附件</el-button>
+			</sc-upload-large-file>
+		</el-card>
+
 		<el-card shadow="never" header="图片卡片示例(已开启拖拽排序)">
 			<sc-upload-multiple v-model="fileurl2" draggable :limit="3" tip="最多上传3个文件,单个文件不要超过10M,请上传图像格式文件"></sc-upload-multiple>
 		</el-card>
@@ -76,6 +82,7 @@
 				fileurl5: "",
 				fileurl6: "",
 				fileurl7: "",
+				largeFileurl: "",
 				form: {
 					file1: "",
 					file2: "",
