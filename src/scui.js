@@ -1,7 +1,7 @@
-import config from "./config"
+import config from './config'
 import api from './api'
 import tool from './utils/tool'
-import http from "./utils/request"
+import http from './utils/request'
 import { permission, rolePermission } from './utils/permission'
 
 import scTable from './components/scTable'
@@ -35,31 +35,31 @@ import * as scIcons from './assets/icons'
 export default {
 	install(app) {
 		//挂载全局对象
-		app.config.globalProperties.$CONFIG = config;
-		app.config.globalProperties.$TOOL = tool;
-		app.config.globalProperties.$HTTP = http;
-		app.config.globalProperties.$API = api;
-		app.config.globalProperties.$AUTH = permission;
-		app.config.globalProperties.$ROLE = rolePermission;
+		app.config.globalProperties.$CONFIG = config
+		app.config.globalProperties.$TOOL = tool
+		app.config.globalProperties.$HTTP = http
+		app.config.globalProperties.$API = api
+		app.config.globalProperties.$AUTH = permission
+		app.config.globalProperties.$ROLE = rolePermission
 
 		//注册全局组件
-		app.component('scTable', scTable);
-		app.component('scTableColumn', scTableColumn);
-		app.component('scFilterBar', scFilterBar);
-		app.component('scUpload', scUpload);
-		app.component('scUploadMultiple', scUploadMultiple);
-		app.component('scUploadFile', scUploadFile);
-		app.component('scFormTable', scFormTable);
-		app.component('scTableSelect', scTableSelect);
-		app.component('scPageHeader', scPageHeader);
-		app.component('scSelect', scSelect);
-		app.component('scDialog', scDialog);
-		app.component('scForm', scForm);
-		app.component('scTitle', scTitle);
-		app.component('scWaterMark', scWaterMark);
-		app.component('scQrCode', scQrCode);
-		app.component('scStatusIndicator', scStatusIndicator);
-		app.component('scTrend', scTrend);
+		app.component('scTable', scTable)
+		app.component('scTableColumn', scTableColumn)
+		app.component('scFilterBar', scFilterBar)
+		app.component('scUpload', scUpload)
+		app.component('scUploadMultiple', scUploadMultiple)
+		app.component('scUploadFile', scUploadFile)
+		app.component('scFormTable', scFormTable)
+		app.component('scTableSelect', scTableSelect)
+		app.component('scPageHeader', scPageHeader)
+		app.component('scSelect', scSelect)
+		app.component('scDialog', scDialog)
+		app.component('scForm', scForm)
+		app.component('scTitle', scTitle)
+		app.component('scWaterMark', scWaterMark)
+		app.component('scQrCode', scQrCode)
+		app.component('scStatusIndicator', scStatusIndicator)
+		app.component('scTrend', scTrend)
 
 		//注册全局指令
 		app.directive('auth', auth)
@@ -68,11 +68,11 @@ export default {
 		app.directive('copy', copy)
 
 		//统一注册el-icon图标
-		for(let icon in elIcons){
+		for (let icon in elIcons) {
 			app.component(`ElIcon${icon}`, elIcons[icon])
 		}
 		//统一注册sc-icon图标
-		for(let icon in scIcons){
+		for (let icon in scIcons) {
 			app.component(`ScIcon${icon}`, scIcons[icon])
 		}
 

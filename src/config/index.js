@@ -3,25 +3,29 @@ const DEFAULT_CONFIG = {
 	APP_NAME: process.env.VUE_APP_TITLE,
 
 	//首页地址
-	DASHBOARD_URL: "/dashboard",
+	DASHBOARD_URL: '/dashboard',
 
 	//版本号
-	APP_VER: "1.6.6",
+	APP_VER: '1.6.6',
 
 	//内核版本号
-	CORE_VER: "1.6.6",
+	CORE_VER: '1.6.6',
 
 	//接口地址
-	API_URL: process.env.NODE_ENV === 'development' && process.env.VUE_APP_PROXY === 'true' ? "/api" : process.env.VUE_APP_API_BASEURL,
+	API_URL:
+		process.env.NODE_ENV === 'development' &&
+		process.env.VUE_APP_PROXY === 'true'
+			? '/api'
+			: process.env.VUE_APP_API_BASEURL,
 
 	//请求超时
 	TIMEOUT: 10000,
 
 	//TokenName
-	TOKEN_NAME: "Authorization",
+	TOKEN_NAME: 'Authorization',
 
 	//Token前缀，注意最后有个空格，如不需要需设置空字符串
-	TOKEN_PREFIX: "Bearer ",
+	TOKEN_PREFIX: 'Bearer ',
 
 	//追加其他头
 	HEADERS: {},
@@ -59,21 +63,17 @@ const DEFAULT_CONFIG = {
 		//默认分栏数量和宽度 例如 [24] [18,6] [8,8,8] [6,12,6]
 		layout: [12, 6, 6],
 		//小组件分布，com取值:views/home/components 文件名
-		copmsList: [
-			['welcome'],
-			['about', 'ver'],
-			['time', 'progress']
-		]
+		copmsList: [['welcome'], ['about', 'ver'], ['time', 'progress']]
 	}
 }
 
 //合并业务配置
-import MY_CONFIG from "./myConfig"
+import MY_CONFIG from './myConfig'
 Object.assign(DEFAULT_CONFIG, MY_CONFIG)
 
 // 如果生产模式，就合并动态的APP_CONFIG
 // public/config.js
-if(process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
 	Object.assign(DEFAULT_CONFIG, APP_CONFIG)
 }
 

@@ -3,47 +3,47 @@ export default {
 	operator: [
 		{
 			label: '等于',
-			value: '=',
+			value: '='
 		},
 		{
 			label: '不等于',
-			value: '!=',
+			value: '!='
 		},
 		{
 			label: '大于',
-			value: '>',
+			value: '>'
 		},
 		{
 			label: '大于等于',
-			value: '>=',
+			value: '>='
 		},
 		{
 			label: '小于',
-			value: '<',
+			value: '<'
 		},
 		{
 			label: '小于等于',
-			value: '<=',
+			value: '<='
 		},
 		{
 			label: '包含',
-			value: 'include',
+			value: 'include'
 		},
 		{
 			label: '不包含',
-			value: 'notinclude',
+			value: 'notinclude'
 		}
 	],
 	//过滤结果运算符的分隔符
 	separator: '|',
 	//获取我的常用
 	getMy: function (name) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			console.log(`这里可以根据${name}参数请求接口`)
 			var list = []
-			setTimeout(()=>{
+			setTimeout(() => {
 				resolve(list)
-			},500)
+			}, 500)
 		})
 	},
 	/**
@@ -52,11 +52,11 @@ export default {
 	 * @obj 过滤项整理好的对象
 	 */
 	saveMy: function (name, obj) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			console.log(name, obj)
-			setTimeout(()=>{
+			setTimeout(() => {
 				resolve(true)
-			},500)
+			}, 500)
 		})
 	},
 	/**
@@ -64,11 +64,11 @@ export default {
 	 * @name scFilterBar组件的props->filterName
 	 */
 	delMy: function (name) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			console.log(name)
-			setTimeout(()=>{
+			setTimeout(() => {
 				resolve(true)
-			},500)
+			}, 500)
 		})
 	}
 }

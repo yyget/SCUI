@@ -1,4 +1,4 @@
-import API from "@/api";
+import API from '@/api'
 
 //审批工作流人员/组织选择器配置
 
@@ -38,7 +38,7 @@ export default {
 		},
 		props: {
 			key: 'id',
-			label: 'user',
+			label: 'user'
 		},
 		request: {
 			page: 'page',

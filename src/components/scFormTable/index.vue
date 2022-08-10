@@ -1,25 +1,56 @@
 <template>
 	<div class="sc-form-table">
-		<el-table :data="data" ref="table" :key="toggleIndex" border stripe>
-			<el-table-column type="index" width="50" fixed="left">
+		<el-table
+			:data="data"
+			ref="table"
+			:key="toggleIndex"
+			border
+			stripe
+		>
+			<el-table-column
+				type="index"
+				width="50"
+				fixed="left"
+			>
 				<template #header>
-					<el-button type="primary" icon="el-icon-plus" size="small" circle @click="rowAdd"></el-button>
+					<el-button
+						type="primary"
+						icon="el-icon-plus"
+						size="small"
+						circle
+						@click="rowAdd"
+					></el-button>
 				</template>
 				<template #default="scope">
 					<div class="sc-form-table-handle">
-						<span>{{scope.$index + 1}}</span>
-						<el-button type="danger" icon="el-icon-delete" size="small" plain circle @click="rowDel(scope.row, scope.$index)"></el-button>
+						<span>{{ scope.$index + 1 }}</span>
+						<el-button
+							type="danger"
+							icon="el-icon-delete"
+							size="small"
+							plain
+							circle
+							@click="rowDel(scope.row, scope.$index)"
+						></el-button>
 					</div>
 				</template>
 			</el-table-column>
-			<el-table-column label="" width="58" v-if="dragSort">
+			<el-table-column
+				label=""
+				width="58"
+				v-if="dragSort"
+			>
 				<template #default>
-					<el-tag class="move" style="cursor: move;"><el-icon-d-caret style="width: 1em; height: 1em;"/></el-tag>
+					<el-tag
+						class="move"
+						style="cursor: move"
+						><el-icon-d-caret style="width: 1em; height: 1em"
+					/></el-tag>
 				</template>
 			</el-table-column>
 			<slot></slot>
 			<template #empty>
-				{{placeholder}}
+				{{ placeholder }}
 			</template>
 		</el-table>
 	</div>
@@ -32,40 +63,42 @@
 		props: {
 			modelValue: { type: Array, default: () => [] },
 			addTemplate: { type: Object, default: () => {} },
-			placeholder: { type: String, default: "暂无数据" },
+			placeholder: { type: String, default: '暂无数据' },
 			dragSort: { type: Boolean, default: false }
 		},
-		data(){
+		data() {
 			return {
 				data: [],
 				toggleIndex: 0
 			}
 		},
-		mounted(){
+		mounted() {
 			this.data = this.modelValue
-			if(this.dragSort){
+			if (this.dragSort) {
 				this.rowDrop()
 			}
 		},
-		watch:{
-			modelValue(){
+		watch: {
+			modelValue() {
 				this.data = this.modelValue
 			},
 			data: {
-				handler(){
-					this.$emit('update:modelValue', this.data);
+				handler() {
+					this.$emit('update:modelValue', this.data)
 				},
 				deep: true
 			}
 		},
 		methods: {
-			rowDrop(){
+			rowDrop() {
 				const _this = this
-				const tbody = this.$refs.table.$el.querySelector('.el-table__body-wrapper tbody')
+				const tbody = this.$refs.table.$el.querySelector(
+					'.el-table__body-wrapper tbody'
+				)
 				Sortable.create(tbody, {
-					handle: ".move",
+					handle: '.move',
 					animation: 300,
-					ghostClass: "ghost",
+					ghostClass: 'ghost',
 					onEnd({ newIndex, oldIndex }) {
 						const tableData = _this.data
 						const currRow = tableData.splice(oldIndex, 1)[0]
@@ -77,11 +110,11 @@
 					}
 				})
 			},
-			rowAdd(){
+			rowAdd() {
 				const temp = JSON.parse(JSON.stringify(this.addTemplate))
 				this.data.push(temp)
 			},
-			rowDel(row, index){
+			rowDel(row, index) {
 				this.data.splice(index, 1)
 			}
 		}
@@ -89,10 +122,22 @@
 </script>
 
 <style scoped>
-	.sc-form-table {width: 100%;}
-	.sc-form-table .sc-form-table-handle {text-align: center;}
-	.sc-form-table .sc-form-table-handle span {display: inline-block;}
-	.sc-form-table .sc-form-table-handle button {display: none;}
-	.sc-form-table .hover-row .sc-form-table-handle span {display: none;}
-	.sc-form-table .hover-row .sc-form-table-handle button {display: inline-block;}
+	.sc-form-table {
+		width: 100%;
+	}
+	.sc-form-table .sc-form-table-handle {
+		text-align: center;
+	}
+	.sc-form-table .sc-form-table-handle span {
+		display: inline-block;
+	}
+	.sc-form-table .sc-form-table-handle button {
+		display: none;
+	}
+	.sc-form-table .hover-row .sc-form-table-handle span {
+		display: none;
+	}
+	.sc-form-table .hover-row .sc-form-table-handle button {
+		display: inline-block;
+	}
 </style>

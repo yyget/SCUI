@@ -8,7 +8,10 @@
 -->
 
 <template>
-	<div class="sc-video" ref="scVideo"></div>
+	<div
+		class="sc-video"
+		ref="scVideo"
+	></div>
 </template>
 
 <script>
@@ -17,7 +20,7 @@
 
 	export default {
 		props: {
-			src: { type: String, required: true, default: "" },
+			src: { type: String, required: true, default: '' },
 			autoplay: { type: Boolean, default: false },
 			controls: { type: Boolean, default: true },
 			loop: { type: Boolean, default: false },
@@ -29,24 +32,24 @@
 				player: null
 			}
 		},
-		watch:{
-			src(val){
-				if(this.player.hasStart){
+		watch: {
+			src(val) {
+				if (this.player.hasStart) {
 					this.player.src = val
-				}else{
+				} else {
 					this.player.start(val)
 				}
 			}
 		},
 		mounted() {
-			if(this.isLive){
+			if (this.isLive) {
 				this.initHls()
-			}else{
+			} else {
 				this.init()
 			}
 		},
 		methods: {
-			init(){
+			init() {
 				this.player = new Player({
 					el: this.$refs.scVideo,
 					url: this.src,
@@ -58,7 +61,7 @@
 					...this.options
 				})
 			},
-			initHls(){
+			initHls() {
 				this.player = new HlsPlayer({
 					el: this.$refs.scVideo,
 					url: this.src,
@@ -67,7 +70,7 @@
 					controls: this.controls,
 					fluid: true,
 					isLive: true,
-					ignores: ['time','progress'],
+					ignores: ['time', 'progress'],
 					lang: 'zh-cn',
 					...this.options
 				})
@@ -77,8 +80,30 @@
 </script>
 
 <style scoped>
-	.sc-video:deep(.danmu) > * {color: #fff;font-size:20px;font-weight:bold;text-shadow:1px 1px 0 #000,-1px -1px 0 #000,-1px 1px 0 #000,1px -1px 0 #000;}
-	.sc-video:deep(.xgplayer-controls) {background-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.3));}
-	.sc-video:deep(.xgplayer-progress-tip) {border:0;color: #fff;background: rgba(0,0,0,.5);line-height: 25px;padding: 0 10px;border-radius: 25px;}
-	.sc-video:deep(.xgplayer-enter-spinner) {width: 50px;height: 50px;}
+	.sc-video:deep(.danmu) > * {
+		color: #fff;
+		font-size: 20px;
+		font-weight: bold;
+		text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, -1px 1px 0 #000,
+			1px -1px 0 #000;
+	}
+	.sc-video:deep(.xgplayer-controls) {
+		background-image: linear-gradient(
+			180deg,
+			transparent,
+			rgba(0, 0, 0, 0.3)
+		);
+	}
+	.sc-video:deep(.xgplayer-progress-tip) {
+		border: 0;
+		color: #fff;
+		background: rgba(0, 0, 0, 0.5);
+		line-height: 25px;
+		padding: 0 10px;
+		border-radius: 25px;
+	}
+	.sc-video:deep(.xgplayer-enter-spinner) {
+		width: 50px;
+		height: 50px;
+	}
 </style>

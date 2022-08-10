@@ -1,17 +1,31 @@
 <template>
 	<el-main>
-		<el-alert title="感谢Vue3.0版本的vue.draggable.next拖拽组件 https://github.com/SortableJS/vue.draggable.next" type="success" style="margin-bottom:20px;"></el-alert>
+		<el-alert
+			title="感谢Vue3.0版本的vue.draggable.next拖拽组件 https://github.com/SortableJS/vue.draggable.next"
+			type="success"
+			style="margin-bottom: 20px"
+		></el-alert>
 		<div class="dragList">
-			<draggable v-model="listA" animation="200" item-key="id" group="people">
+			<draggable
+				v-model="listA"
+				animation="200"
+				item-key="id"
+				group="people"
+			>
 				<template #item="{ element }">
-					<div class="item">{{element.text}}</div>
+					<div class="item">{{ element.text }}</div>
 				</template>
 			</draggable>
 		</div>
 		<div class="dragList">
-			<draggable v-model="listB" animation="200" item-key="id" group="people">
+			<draggable
+				v-model="listB"
+				animation="200"
+				item-key="id"
+				group="people"
+			>
 				<template #item="{ element }">
-					<div class="item">{{element.text}}</div>
+					<div class="item">{{ element.text }}</div>
 				</template>
 			</draggable>
 		</div>
@@ -109,8 +123,20 @@
 </script>
 
 <style scoped>
-	.dragList {overflow: auto;}
-	.item {cursor: move;float: left;background: #fff;width:100px;height: 100px;line-height: 100px;text-align: center;margin:0 15px 15px 0;border: 1px solid #e6e6e6;}
+	.dragList {
+		overflow: auto;
+	}
+	.item {
+		cursor: move;
+		float: left;
+		background: #fff;
+		width: 100px;
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		margin: 0 15px 15px 0;
+		border: 1px solid #e6e6e6;
+	}
 	.dragList .sortable-ghost {
 		opacity: 0.5;
 	}

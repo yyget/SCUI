@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
 	//设置为空打包后不分更目录还是多级目录
-	publicPath:'',
+	publicPath: '',
 	//build编译后存放静态文件的目录
 	//assetsDir: "static",
 
@@ -26,9 +26,9 @@ module.exports = defineConfig({
 
 	chainWebpack: config => {
 		// 移除 prefetch 插件
-		config.plugins.delete('preload');
-		config.plugins.delete('prefetch');
-		config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
+		config.plugins.delete('preload')
+		config.plugins.delete('prefetch')
+		config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js')
 	},
 
 	configureWebpack: {
@@ -38,34 +38,34 @@ module.exports = defineConfig({
 		},
 		optimization: {
 			splitChunks: {
-				chunks: "all",
+				chunks: 'all',
 				automaticNameDelimiter: '~',
-				name: "scuiChunks",
+				name: 'scuiChunks',
 				cacheGroups: {
 					//第三方库抽离
 					vendor: {
-						name: "modules",
+						name: 'modules',
 						test: /[\\/]node_modules[\\/]/,
 						priority: -10
 					},
 					elicons: {
-						name: "elicons",
+						name: 'elicons',
 						test: /[\\/]node_modules[\\/]@element-plus[\\/]icons-vue[\\/]/
 					},
 					tinymce: {
-						name: "tinymce",
+						name: 'tinymce',
 						test: /[\\/]node_modules[\\/]tinymce[\\/]/
 					},
 					echarts: {
-						name: "echarts",
+						name: 'echarts',
 						test: /[\\/]node_modules[\\/]echarts[\\/]/
 					},
 					xgplayer: {
-						name: "xgplayer",
+						name: 'xgplayer',
 						test: /[\\/]node_modules[\\/]xgplayer.*[\\/]/
 					},
 					codemirror: {
-						name: "codemirror",
+						name: 'codemirror',
 						test: /[\\/]node_modules[\\/]codemirror[\\/]/
 					}
 				}

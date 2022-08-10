@@ -5,29 +5,29 @@
  * @param {string} keyName - 必填，唯一key和JS返回的全局的对象名
  * @param {string} callbackName - 非必填，如果远程JS有callback，则可更有效的判断是否完成加载
  */
-export function loadJS (src, keyName, callbackName) {
+export function loadJS(src, keyName, callbackName) {
 	return new Promise((resolve, reject) => {
-		let has = document.head.querySelector("script[loadKey="+keyName+"]")
-		if(has){
+		let has = document.head.querySelector('script[loadKey=' + keyName + ']')
+		if (has) {
 			return resolve(window[keyName])
 		}
-		let script = document.createElement("script")
-		script.type = "text/javascript"
+		let script = document.createElement('script')
+		script.type = 'text/javascript'
 		script.src = src
-		script.setAttribute("loadKey", keyName)
+		script.setAttribute('loadKey', keyName)
 		document.head.appendChild(script)
 		script.onload = () => {
-			if(callbackName){
+			if (callbackName) {
 				window[callbackName] = () => {
 					return resolve(window[keyName])
 				}
-			}else{
-				setTimeout(()=>{
+			} else {
+				setTimeout(() => {
 					return resolve(window[keyName])
-				},50)
+				}, 50)
 			}
 		}
-		script.onerror = (err) => {
+		script.onerror = err => {
 			return reject(err)
 		}
 	})
@@ -39,21 +39,21 @@ export function loadJS (src, keyName, callbackName) {
  * @param {string} src - 必填，需要加载的URL路径
  * @param {string} keyName - 必填，唯一key
  */
-export function loadCSS (src, keyName) {
+export function loadCSS(src, keyName) {
 	return new Promise((resolve, reject) => {
-		let has = document.head.querySelector("link[loadKey="+keyName+"]")
-		if(has){
+		let has = document.head.querySelector('link[loadKey=' + keyName + ']')
+		if (has) {
 			return resolve()
 		}
 		let link = document.createElement('link')
-		link.rel = "stylesheet"
+		link.rel = 'stylesheet'
 		link.href = src
-		link.setAttribute("loadKey", keyName)
+		link.setAttribute('loadKey', keyName)
 		document.head.appendChild(link)
 		link.onload = () => {
 			return resolve()
 		}
-		link.onerror = (err) => {
+		link.onerror = err => {
 			return reject(err)
 		}
 	})

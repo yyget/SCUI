@@ -1,23 +1,44 @@
 <template>
 	<el-main>
-		<el-card shadow="never" header="过滤器">
-			<scFilterBar filterName="filterName" :options="options" @filterChange="change">
-				<template #default="{filterLength, openFilter}">
-					<el-badge :value="filterLength" type="danger" :hidden="filterLength<=0">
-						<el-button icon="el-icon-filter" @click="openFilter"></el-button>
+		<el-card
+			shadow="never"
+			header="过滤器"
+		>
+			<scFilterBar
+				filterName="filterName"
+				:options="options"
+				@filterChange="change"
+			>
+				<template #default="{ filterLength, openFilter }">
+					<el-badge
+						:value="filterLength"
+						type="danger"
+						:hidden="filterLength <= 0"
+					>
+						<el-button
+							icon="el-icon-filter"
+							@click="openFilter"
+						></el-button>
 					</el-badge>
 				</template>
 			</scFilterBar>
 		</el-card>
-		<el-alert title="SCUI 独创的过滤条Filterbar,可配置不同类型的过滤字段,以及异步获取数据,在@/config/filterBar.js中可以更改运算符以及其他配置,操作上方过滤条查看下方change事件的回调,在表格查询的场景下非常合适" type="success" style="margin:20px 0;"></el-alert>
-		<el-card shadow="never" header="返回值">
+		<el-alert
+			title="SCUI 独创的过滤条Filterbar,可配置不同类型的过滤字段,以及异步获取数据,在@/config/filterBar.js中可以更改运算符以及其他配置,操作上方过滤条查看下方change事件的回调,在表格查询的场景下非常合适"
+			type="success"
+			style="margin: 20px 0"
+		></el-alert>
+		<el-card
+			shadow="never"
+			header="返回值"
+		>
 			<pre>{{ filterData }}</pre>
 		</el-card>
 	</el-main>
 </template>
 
 <script>
-	import scFilterBar from '@/components/scFilterBar';
+	import scFilterBar from '@/components/scFilterBar'
 
 	export default {
 		name: 'filterBar',
@@ -26,8 +47,8 @@
 		},
 		data() {
 			return {
-				filterData : {},
-				defaultFilter : [],
+				filterData: {},
+				defaultFilter: [],
 				options: [
 					{
 						label: '订单号',
@@ -44,14 +65,14 @@
 						selected: true,
 						placeholder: '请选择类型',
 						extend: {
-							data:[
+							data: [
 								{
-									label: "选项1",
-									value: "1"
+									label: '选项1',
+									value: '1'
 								},
 								{
-									label: "选项2",
-									value: "2"
+									label: '选项2',
+									value: '2'
 								}
 							]
 						}
@@ -64,14 +85,14 @@
 						placeholder: '请选择类型',
 						extend: {
 							multiple: true,
-							data:[
+							data: [
 								{
-									label: "选项1",
-									value: "1"
+									label: '选项1',
+									value: '1'
 								},
 								{
-									label: "选项2",
-									value: "2"
+									label: '选项2',
+									value: '2'
 								}
 							]
 						}
@@ -102,11 +123,13 @@
 						placeholder: '请输入关键词后检索',
 						extend: {
 							remote: true,
-							request: async (query) => {
+							request: async query => {
 								var data = {
-									keyword: query,
+									keyword: query
 								}
-								var list = await this.$API.system.dic.get.get(data)
+								var list = await this.$API.system.dic.get.get(
+									data
+								)
 								return list.data.map(item => {
 									return {
 										label: item.label,
@@ -124,11 +147,11 @@
 						operators: [
 							{
 								label: '包含',
-								value: 'include',
+								value: 'include'
 							},
 							{
 								label: '不包含',
-								value: 'notinclude',
+								value: 'notinclude'
 							}
 						]
 					},
@@ -146,11 +169,11 @@
 						operators: [
 							{
 								label: '等于',
-								value: '=',
+								value: '='
 							},
 							{
 								label: '不等于',
-								value: '!=',
+								value: '!='
 							}
 						]
 					},
@@ -163,12 +186,11 @@
 			}
 		},
 		methods: {
-			change(data){
-				this.filterData = data;
+			change(data) {
+				this.filterData = data
 			}
 		}
 	}
 </script>
 
-<style>
-</style>
+<style></style>

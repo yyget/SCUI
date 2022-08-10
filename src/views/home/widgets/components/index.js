@@ -1,4 +1,4 @@
-import {markRaw} from 'vue';
+import { markRaw } from 'vue'
 const resultComps = {}
 let requireComponent = require.context(
 	'./', // 在当前目录下查找
