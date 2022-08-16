@@ -67,6 +67,10 @@
 			templates: {
 				type: Array,
 				default: () => []
+			},
+			options: {
+				type: Object,
+				default: () => {}
 			}
 		},
 		data() {
@@ -96,7 +100,8 @@
 					quickbars_insert_toolbar: false,
 					image_caption: true,
 					image_advtab: true,
-					images_upload_handler: function (blobInfo) {
+					convert_urls: false,
+					images_upload_handler: function(blobInfo) {
 						return new Promise((resolve, reject) => {
 							const data = new FormData()
 							data.append(
@@ -130,7 +135,8 @@
 								}, 0)
 							}
 						})
-					}
+					},
+					...this.options
 				},
 				contentValue: this.modelValue
 			}
