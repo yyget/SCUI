@@ -1,7 +1,12 @@
 <template>
 	<el-main>
 		<el-card shadow="never">
-			<sc-editor v-model="html" placeholder="请输入" :templates="templates" :height="400"></sc-editor>
+			<sc-editor
+				v-model="html"
+				placeholder="请输入"
+				:templates="templates"
+				:height="400"
+			></sc-editor>
 		</el-card>
 		<el-card shadow="never" header="配置" style="margin-top: 20px;">
 			<el-descriptions border :column="1">
@@ -20,15 +25,15 @@
 </template>
 
 <script>
-	import { defineAsyncComponent } from 'vue';
-	const scEditor = defineAsyncComponent(() => import('@/components/scEditor'));
+	import { defineAsyncComponent } from 'vue'
+	const scEditor = defineAsyncComponent(() => import('@/components/scEditor'))
 
 	export default {
-		name: "editor",
+		name: 'editor',
 		components: {
 			scEditor
 		},
-		data(){
+		data() {
 			return {
 				html: '',
 				templates: [
@@ -48,5 +53,4 @@
 	}
 </script>
 
-<style>
-</style>
+<style></style>

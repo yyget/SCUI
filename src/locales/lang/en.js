@@ -1,7 +1,8 @@
 export default {
 	login: {
 		slogan: 'High performance / delicate / grace',
-		describe: 'Vue3 + element plus based front-end solutions in the background.',
+		describe:
+			'Vue3 + element plus based front-end solutions in the background.',
 		signInTitle: 'Sign in',
 		accountLogin: 'Account sign in',
 		mobileLogin: 'Mobile sign in',
@@ -24,16 +25,20 @@ export default {
 		noAccount: 'No account?',
 		createAccount: 'Create a new account',
 		wechatLoginTitle: 'QR code sign in',
-		wechatLoginMsg: 'Please use wechat to scan and log in | Auto scan after 3 seconds of simulation',
-		wechatLoginResult: 'Scanned | Please click authorize login in the device'
+		wechatLoginMsg:
+			'Please use wechat to scan and log in | Auto scan after 3 seconds of simulation',
+		wechatLoginResult:
+			'Scanned | Please click authorize login in the device'
 	},
 	user: {
 		dynamic: 'Dynamic',
 		info: 'User Info',
 		settings: 'Settings',
 		nightmode: 'night mode',
-		nightmode_msg: 'Suitable for low light environment,The current night mode is beta',
+		nightmode_msg:
+			'Suitable for low light environment,The current night mode is beta',
 		language: 'language',
-		language_msg: 'Translation in progress,Temporarily translated the text of this view',
+		language_msg:
+			'Translation in progress,Temporarily translated the text of this view'
 	}
 }

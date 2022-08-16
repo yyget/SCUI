@@ -5,30 +5,30 @@ export default {
 		routeShow: true
 	},
 	mutations: {
-		pushKeepLive(state, component){
-			if(!state.keepLiveRoute.includes(component)){
+		pushKeepLive(state, component) {
+			if (!state.keepLiveRoute.includes(component)) {
 				state.keepLiveRoute.push(component)
 			}
 		},
-		removeKeepLive(state, component){
-			var index = state.keepLiveRoute.indexOf(component);
-			if(index !== -1){
-				state.keepLiveRoute.splice(index, 1);
+		removeKeepLive(state, component) {
+			var index = state.keepLiveRoute.indexOf(component)
+			if (index !== -1) {
+				state.keepLiveRoute.splice(index, 1)
 			}
 		},
-		clearKeepLive(state){
+		clearKeepLive(state) {
 			state.keepLiveRoute = []
 		},
-		setRouteKey(state, key){
+		setRouteKey(state, key) {
 			state.routeKey = key
 		},
-		setRouteShow(state, key){
+		setRouteShow(state, key) {
 			state.routeShow = key
 		}
 	},
 	actions: {
 		setRouteKey({ commit }, key) {
-			commit('setRouteKey', key);
+			commit('setRouteKey', key)
 		}
 	}
 }

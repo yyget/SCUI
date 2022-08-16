@@ -8,30 +8,30 @@
 -->
 
 <template>
-	<img ref="img"/>
+	<img ref="img" />
 </template>
 
 <script>
-	import QRcode from "qrcodejs2"
+	import QRcode from 'qrcodejs2'
 
 	export default {
 		props: {
-			text: { type: String, required: true, default: "" },
+			text: { type: String, required: true, default: '' },
 			size: { type: Number, default: 100 },
-			logo: { type: String, default: "" },
+			logo: { type: String, default: '' },
 			logoSize: { type: Number, default: 30 },
 			logoPadding: { type: Number, default: 5 },
-			colorDark: { type: String, default: "#000000" },
-			colorLight: { type: String, default: "#ffffff" },
-			correctLevel: { type: Number, default: 2 },
+			colorDark: { type: String, default: '#000000' },
+			colorLight: { type: String, default: '#ffffff' },
+			correctLevel: { type: Number, default: 2 }
 		},
 		data() {
 			return {
 				qrcode: null
 			}
 		},
-		watch:{
-			text(){
+		watch: {
+			text() {
 				this.draw()
 			}
 		},
@@ -40,9 +40,9 @@
 		},
 		methods: {
 			//创建原始二维码DOM
-			async create(){
-				return new Promise((resolve) => {
-					var element = document.createElement("div");
+			async create() {
+				return new Promise(resolve => {
+					var element = document.createElement('div')
 					new QRcode(element, {
 						text: this.text,
 						width: this.size,
@@ -51,38 +51,47 @@
 						colorLight: this.colorLight,
 						correctLevel: this.correctLevel
 					})
-					if (element.getElementsByTagName("canvas")[0]) {
+					if (element.getElementsByTagName('canvas')[0]) {
 						this.qrcode = element
 						resolve()
 					}
 				})
 			},
 			//绘制LOGO
-			async drawLogo(){
-				return new Promise((resolve) => {
+			async drawLogo() {
+				return new Promise(resolve => {
 					var logo = new Image()
 					logo.src = this.logo
 					const logoPos = (this.size - this.logoSize) / 2
 					const rectSize = this.logoSize + this.logoPadding
 					const rectPos = (this.size - rectSize) / 2
-					var ctx = this.qrcode.getElementsByTagName("canvas")[0].getContext("2d")
-					logo.onload = ()=>{
+					var ctx = this.qrcode
+						.getElementsByTagName('canvas')[0]
+						.getContext('2d')
+					logo.onload = () => {
 						ctx.fillRect(rectPos, rectPos, rectSize, rectSize)
-						ctx.drawImage(logo, logoPos, logoPos, this.logoSize, this.logoSize)
+						ctx.drawImage(
+							logo,
+							logoPos,
+							logoPos,
+							this.logoSize,
+							this.logoSize
+						)
 						resolve()
 					}
 				})
 			},
-			async draw(){
+			async draw() {
 				await this.create()
-				if(this.logo){
+				if (this.logo) {
 					await this.drawLogo()
 				}
-				this.$refs.img.src = this.qrcode.getElementsByTagName("canvas")[0].toDataURL("image/png")
-			},
+				this.$refs.img.src = this.qrcode
+					.getElementsByTagName('canvas')[0]
+					.toDataURL('image/png')
+			}
 		}
 	}
 </script>
 
-<style>
-</style>
+<style></style>

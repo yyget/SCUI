@@ -1,7 +1,10 @@
 <template>
 	<el-container>
 		<el-header>
-			<el-page-header content="FullPage" @back="goBack" />
+			<el-page-header
+				content="FullPage"
+				@back="goBack"
+			/>
 		</el-header>
 		<el-main>
 			<el-empty description="FullPageMain"></el-empty>
@@ -13,20 +16,15 @@
 	export default {
 		name: 'fullpage',
 		data() {
-			return {
-
-			}
+			return {}
 		},
-		mounted() {
-
-		},
+		mounted() {},
 		methods: {
-			goBack(){
+			goBack() {
 				this.$router.go(-1)
 			}
 		}
 	}
 </script>
 
-<style>
-</style>
+<style></style>

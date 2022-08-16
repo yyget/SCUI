@@ -8,51 +8,56 @@
 -->
 
 <template>
-	<div v-show="$route.meta.type=='iframe'" class="iframe-pages">
-		<iframe v-for="item in iframeList" :key="item.meta.url" v-show="$route.meta.url==item.meta.url" :src="item.meta.url" frameborder='0'></iframe>
+	<div
+		v-show="$route.meta.type == 'iframe'"
+		class="iframe-pages"
+	>
+		<iframe
+			v-for="item in iframeList"
+			:key="item.meta.url"
+			v-show="$route.meta.url == item.meta.url"
+			:src="item.meta.url"
+			frameborder="0"
+		></iframe>
 	</div>
 </template>
 
 <script>
 	export default {
 		data() {
-			return {
-
-			}
+			return {}
 		},
 		watch: {
 			$route(e) {
 				this.push(e)
-			},
+			}
 		},
 		created() {
-			this.push(this.$route);
+			this.push(this.$route)
 		},
-		computed:{
-			iframeList(){
+		computed: {
+			iframeList() {
 				return this.$store.state.iframe.iframeList
 			},
-			ismobile(){
+			ismobile() {
 				return this.$store.state.global.ismobile
 			},
-			layoutTags(){
+			layoutTags() {
 				return this.$store.state.global.layoutTags
 			}
 		},
-		mounted() {
-
-		},
+		mounted() {},
 		methods: {
-			push(route){
-				if(route.meta.type == 'iframe'){
-					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("setIframeList", route)
-					}else{
-						this.$store.commit("pushIframeList", route)
+			push(route) {
+				if (route.meta.type == 'iframe') {
+					if (this.ismobile || !this.layoutTags) {
+						this.$store.commit('setIframeList', route)
+					} else {
+						this.$store.commit('pushIframeList', route)
 					}
-				}else{
-					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("clearIframeList")
+				} else {
+					if (this.ismobile || !this.layoutTags) {
+						this.$store.commit('clearIframeList')
 					}
 				}
 			}
@@ -61,6 +66,15 @@
 </script>
 
 <style scoped>
-	.iframe-pages {width:100%;height:100%;background: #fff;}
-	iframe {border:0;width:100%;height:100%;display: block;}
+	.iframe-pages {
+		width: 100%;
+		height: 100%;
+		background: #fff;
+	}
+	iframe {
+		border: 0;
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
 </style>

@@ -1,4 +1,4 @@
-import config from "@/config";
+import config from '@/config'
 
 export default {
 	state: {
@@ -11,22 +11,22 @@ export default {
 		//多标签栏
 		layoutTags: config.LAYOUT_TAGS,
 		//主题
-		theme: config.THEME,
+		theme: config.THEME
 	},
 	mutations: {
-		SET_ismobile(state, key){
+		SET_ismobile(state, key) {
 			state.ismobile = key
 		},
-		SET_layout(state, key){
+		SET_layout(state, key) {
 			state.layout = key
 		},
-		SET_theme(state, key){
+		SET_theme(state, key) {
 			state.theme = key
 		},
-		TOGGLE_menuIsCollapse(state){
+		TOGGLE_menuIsCollapse(state) {
 			state.menuIsCollapse = !state.menuIsCollapse
 		},
-		TOGGLE_layoutTags(state){
+		TOGGLE_layoutTags(state) {
 			state.layoutTags = !state.layoutTags
 		}
 	}
