@@ -47,7 +47,7 @@
 
 <script>
 	import config from "@/config/upload"
-	import Sortable from 'sortablejs'
+	import Sortable from 'sortable'
 
 	export default {
 		props: {
