@@ -101,6 +101,9 @@
 					this.contentValue = coder.getValue()
 					this.$emit('update:modelValue', this.contentValue)
 				})
+				this.$nextTick(() => {
+					this.coder.refresh();
+				});
 			},
 			formatStrInJson(strValue) {
 				return JSON.stringify(JSON.parse(strValue), null, 4)
