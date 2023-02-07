@@ -42,7 +42,7 @@
 												<el-tag>{{index+1}}</el-tag>
 											</td>
 											<td>
-												<py-select v-model="item.field" :options="fields" placeholder="过滤字段" filterable @change="fieldChange(item)">
+												<py-select v-model="item.field" :options="filterFields()" placeholder="过滤字段" filterable @change="fieldChange(item)">
 												</py-select>
 											</td>
 											<td v-if="showOperator">
@@ -150,6 +150,27 @@
 			})
 		},
 		methods: {
+            //获取可选字段
+            filterFields(){
+                const fields = [];
+                //判断是否已添加
+                const checkIn = (field) => {
+                    let res = false;
+                    this.filter.forEach((item) => {
+                        if(item.field.value === field){
+                            res =  true;
+                        }
+                    })
+                    return res;
+                }
+                this.fields.forEach((item) => {
+                    //是否允许重复 -默认允许
+                    if(item.repeat !== false || !checkIn(item.value)){
+                        fields.push(item)
+                    }
+                })
+                return fields;
+            },
 			//打开过滤器
 			openFilter(){
 				this.drawer = true
