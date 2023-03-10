@@ -75,6 +75,7 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);box-sizing: bo
 
 .right-panel-search {display: flex;align-items: center;}
 .right-panel-search > * + * {margin-left:10px;}
+.right-panel-search > .el-input {width:192px;}
 
 .adminui-tags {height:35px;background: #fff;border-bottom: 1px solid #e6e6e6;}
 .adminui-tags ul {display: flex;overflow: hidden;}
