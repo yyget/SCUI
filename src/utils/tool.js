@@ -152,7 +152,7 @@ tool.object = {
     const targetObj = source.constructor === Array ? [] : {}
     Object.keys(source).forEach(keys => {
       if (source[keys] && typeof source[keys] === 'object') {
-        targetObj[keys] = deepClone(source[keys])
+        targetObj[keys] = tool.object.clone((source[keys])
       } else {
         targetObj[keys] = source[keys]
       }
