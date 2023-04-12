@@ -218,4 +218,20 @@ tool.crypto = {
 	}
 }
 
+tool.array = {
+	/**
+	 * 将资源对象中的key名与目标对象一致的key值，赋值进去，不改标目标对象的对象结构
+	 * @param target 目标对象
+	 * @param source 资源对象
+	 */
+	cloneExistKey(target, source) {
+		Object.keys(target).forEach((key) => {
+			if(source[key]) {
+				target[key] = source[key]
+			}
+		});
+		return target
+	}
+}
+
 export default tool

@@ -1,6 +1,7 @@
 <template>
 	<div class="sc-upload-file">
 		<el-upload
+			ref="uploadFileRef"
 			:disabled="disabled"
 			:auto-upload="autoUpload"
 			:action="action"
@@ -31,6 +32,7 @@
 
 <script>
 	import config from "@/config/upload"
+	import tool from '@/utils/tool'
 
 	export default {
 		props: {
@@ -48,7 +50,8 @@
 			drag: { type: Boolean, default: false },
 			multiple: { type: Boolean, default: true },
 			disabled: { type: Boolean, default: false },
-			onSuccess: { type: Function, default: () => { return true } }
+			onSuccess: { type: Function, default: () => { return true } },
+			onError: { type: Function, default: () => { return true } }
 		},
 		data() {
 			return {
@@ -133,6 +136,10 @@
 				file.url = response.src
 			},
 			error(err){
+				var os = this.onError(err)
+				if(os!=undefined && os==false){
+					return false
+				}
 				this.$notify.error({
 					title: '上传文件未成功',
 					message: err
@@ -153,10 +160,17 @@
 			handlePreview(uploadFile){
 				window.open(uploadFile.url)
 			},
+			submit() {
+				// 手动调用上传
+				this.$refs.uploadFileRef.submit()
+			},
 			request(param){
 				var apiObj = config.apiObjFile;
+				// if(this.apiObj){
+				// 	apiObj = this.apiObj;
+				// }
 				if(this.apiObj){
-					apiObj = this.apiObj;
+					apiObj = tool.array.cloneExistKey(config.apiObjFile, this.apiObj);
 				}
 				const data = new FormData();
 				data.append(param.filename, param.file);
