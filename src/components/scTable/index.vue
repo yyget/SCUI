@@ -93,6 +93,7 @@
 			hideRefresh: { type: Boolean, default: false },
 			hideSetting: { type: Boolean, default: false },
 			paginationLayout: { type: String, default: config.paginationLayout },
+			tableConfig: { type: Object, default: () => {} },
 		},
 		watch: {
 			//监听从props里拿到值了
@@ -172,6 +173,8 @@
 			//获取数据
 			async getData(){
 				this.loading = true;
+				// 合并自定义分页参数
+				config.request = Object.assign(this.tableConfig.request||{}, config.request);
 				var reqData = {
 					[config.request.page]: this.currentPage,
 					[config.request.pageSize]: this.scPageSize,
