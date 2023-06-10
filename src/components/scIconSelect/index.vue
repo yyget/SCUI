@@ -19,7 +19,7 @@
 						<el-input class="sc-icon-select__search-input" prefix-icon="el-icon-search" v-model="searchText" placeholder="搜索" size="large" clearable/>
 					</el-form-item>
 				</el-form>
-				<el-tabs>
+				<el-tabs tab-position="left">
 					<el-tab-pane  v-for="item in data" :key="item.name" lazy>
 						<template #label>
 							{{item.name}} <el-tag size="small" type="info">{{item.icons.length}}</el-tag>
