@@ -18,7 +18,7 @@
 					<el-input v-model="fileurlArr2Params.name"></el-input>
 				</el-col>
 				<el-col :span="12">
-					<sc-upload-file v-model="fileurlArr2" :data="fileurlArr2Params" :autoUpload="false" :limit="3" :onSuccess="onUploadSuccess" :onError="onUploadError" tip="最多上传3个文件,单个文件不要超过10M,仅支持上传docx格式文件" accept=".docx" ref="uploadFileRef" >
+					<sc-upload-file v-model="fileurlArr2" :data="fileurlArr2Params" :autoUpload="false" :limit="3" :onSuccess="onUploadSuccess" :onError="onUploadError" tip="最多上传3个文件,单个文件不要超过10M,仅支持上传docx格式文件" accept=".docx" ref="uploadFileRef2" >
 						<el-button type="primary" icon="el-icon-upload">上传附件</el-button>
 					</sc-upload-file>
 				</el-col>
@@ -27,9 +27,10 @@
 		</el-card>
 
 		<el-card shadow="never" header="文件示例3(自定义API地址和文件name名称)">
-			<sc-upload-file v-model="fileurlArr2" :limit="3" :apiObj="fileurlArr2UploadObj" :onSuccess="onUploadSuccess" :onError="onUploadError" tip="最多上传3个文件,单个文件不要超过10M,仅支持上传docx格式文件" accept=".docx" ref="uploadFileRef" >
+			<sc-upload-file v-model="fileurlArr2" :limit="3" name="contractFile" :apiObj="fileurlArr2UploadObj" :onSuccess="onUploadSuccess" :onError="onUploadError" tip="最多上传3个文件,单个文件不要超过10M,仅支持上传docx格式文件" accept=".docx" ref="uploadFileRef3" >
 				<el-button type="primary" icon="el-icon-upload">上传附件</el-button>
 			</sc-upload-file>
+			<p style="color: red">控制台的报错，可以忽略，由于返回的数据结构未按统一的上传格式，实际应用中调整一下返回数据结构即可</p>
 		</el-card>
 
 		<el-card shadow="never" header="图片卡片示例(已开启拖拽排序)">
@@ -169,10 +170,12 @@
 				this.$refs.ruleForm.resetFields();
 			},
 			submitUpload2() {
-				this.$refs.uploadFileRef.submit();
+				// 手动调用上传
+				this.$refs.uploadFileRef2.submit();
 			},
 			onUploadSuccess(res, file) {
-				this.$alert(`success函数钩子，回调参数打开控制台查看`, {
+				// 上传完成后的回调方法
+				this.$alert(`upload success函数钩子，回调参数打开控制台查看`, {
 					title: "提示",
 					type: "success"
 				})
