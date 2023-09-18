@@ -3,13 +3,13 @@
  * @version: 1.3
  * @Author: sakuya
  * @Date: 2023年2月9日12:32:26
- * @LastEditors: sakuya
- * @LastEditTime: 2023年2月17日10:41:47
+ * @LastEditors: 王昶
+ * @LastEditTime: 2023-09-18 11:51:44
 -->
 
 <template>
 	<div class="sc-form-table" ref="scFormTable">
-		<el-table :data="data" ref="table" border stripe>
+		<el-table :data="data" ref="table" border stripe v-bind="$attrs">
 			<el-table-column type="index" width="50" fixed="left">
 				<template #header>
 					<el-button v-if="!hideAdd" type="primary" icon="el-icon-plus" size="small" circle @click="rowAdd"></el-button>
@@ -44,6 +44,7 @@
 			placeholder: { type: String, default: "暂无数据" },
 			dragSort: { type: Boolean, default: false },
 			hideAdd: { type: Boolean, default: false },
+			scrollBottomAfterAdd: { type: Boolean, default: false },
 			hideDelete: { type: Boolean, default: false }
 		},
 		data(){
@@ -95,6 +96,12 @@
 			rowAdd(){
 				const temp = JSON.parse(JSON.stringify(this.addTemplate))
 				this.data.push(temp)
+				if(this.scrollBottomAfterAdd){
+					this.$nextTick(() => {
+						const tbody = this.$refs.table.$el.querySelector('.el-table__body-wrapper .el-scrollbar__wrap')
+						tbody.scrollTop = tbody.scrollHeight
+					})
+				}
 			},
 			rowDel(row, index){
 				this.data.splice(index, 1)
