@@ -45,6 +45,7 @@
 			dragSort: { type: Boolean, default: false },
 			hideAdd: { type: Boolean, default: false },
 			hideDelete: { type: Boolean, default: false }
+            limitRow:{type:Number},
 		},
 		data(){
 			return {
@@ -93,6 +94,7 @@
 				})
 			},
 			rowAdd(){
+                if (this.modelValue.length+1 > this.limitRow) { return ''; }
 				const temp = JSON.parse(JSON.stringify(this.addTemplate))
 				this.data.push(temp)
 			},
@@ -101,6 +103,9 @@
 			},
 			//插入行
 			pushRow(row){
+                if(this.limitRow > 0){
+					if (this.modelValue.length+1 > this.limitRow) { return ''; }
+				}
 				const temp = row || JSON.parse(JSON.stringify(this.addTemplate))
 				this.data.push(temp)
 			},
@@ -114,6 +119,7 @@
 
 <style scoped>
 	.sc-form-table {width: 100%;}
+    .el-form-item.el-form-item--default.asterisk-left.el-form-item--feedback{width: 100%;}
 	.sc-form-table .sc-form-table-handle {text-align: center;}
 	.sc-form-table .sc-form-table-handle span {display: inline-block;}
 	.sc-form-table .sc-form-table-handle button {display: none;}
