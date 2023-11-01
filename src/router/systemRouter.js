@@ -3,6 +3,11 @@ import config from "@/config"
 //系统路由
 const routes = [
 	{
+		path: "/:pathMatch(.*)*",
+		hidden: true,
+		component: () => import(/* webpackChunkName: "404" */ '@/layout/other/404'),
+	},
+	{
 		name: "layout",
 		path: "/",
 		component: () => import(/* webpackChunkName: "layout" */ '@/layout'),

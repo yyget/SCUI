@@ -11,19 +11,10 @@ import {beforeEach, afterEach} from './scrollBehavior';
 //系统路由
 const routes = systemRouter
 
-//系统特殊路由
-const routes_404 = {
-	path: "/:pathMatch(.*)*",
-	hidden: true,
-	component: () => import(/* webpackChunkName: "404" */ '@/layout/other/404'),
-}
-let routes_404_r = ()=>{}
-
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes: routes
 })
-
 //设置标题
 document.title = config.APP_NAME
 
@@ -41,8 +32,6 @@ router.beforeEach(async (to, from, next) => {
 	if(to.path === "/login"){
 		//删除路由(替换当前layout路由)
 		router.addRoute(routes[0])
-		//删除路由(404)
-		routes_404_r()
 		isGetRouter = false;
 		next();
 		return false;
@@ -77,13 +66,16 @@ router.beforeEach(async (to, from, next) => {
 		menuRouter.forEach(item => {
 			router.addRoute("layout", item)
 		})
-		routes_404_r = router.addRoute(routes_404)
+
 		if (to.matched.length == 0) {
 			router.push(to.fullPath);
 		}
 		isGetRouter = true;
+		beforeEach(to, from);
+		next({ ...to, replace: true });
+		return false;
 	}
-	beforeEach(to, from)
+	
 	next();
 });
 
