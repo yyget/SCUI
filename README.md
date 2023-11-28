@@ -32,7 +32,7 @@ SCUI的宗旨是 让一切复杂的东西傻瓜化。
 | 类型 | 链接 |
 | -------- | -------- |
 | 文档地址 | https://lolicode.gitee.io/scui-doc/ |
-| 演示地址  | https://lolicode.gitee.io/scui-doc/demo/#/login |
+| 演示地址  | https://lolicode.gitee.io/scui-doc/demo/#/login | 
 
 
 
