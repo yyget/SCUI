@@ -192,32 +192,29 @@
     }
     function compiler(tpl, opt) {
         var mainCode = parse(tpl, opt);
-
-        var headerCode = '\n' + 
-        '    var html = (function (__data__, __modifierMap__) {\n' + 
-        '        var __str__ = "", __code__ = "";\n' + 
-        '        for(var key in __data__) {\n' + 
-        '            __str__+=("var " + key + "=__data__[\'" + key + "\'];");\n' + 
-        '        }\n' + 
-        '        eval(__str__);\n\n';
-
-        var footerCode = '\n' + 
-        '        ;return __code__;\n' + 
-        '    }(__data__, __modifierMap__));\n' + 
-        '    return html;\n';
-
+        var headerCode = `
+          var html = (function (__data__, __modifierMap__) {
+            ${Object.keys(opt).map(key => `var ${key} = __data__["${key}"];`).join('\n')}
+        `;
+        var footerCode = `
+            ;return __code__;
+          }(__data__, __modifierMap__));
+          return html;
+        `;
         var code = headerCode + mainCode + footerCode;
-        code = code.replace(/[\r]/g, ' '); // ie 7 8 会报错，不知道为什么
+      
         try {
-            var Render = new Function('__data__', '__modifierMap__', code); 
+          var Render = typeof Function !== 'undefined' ? new Function('__data__', '__modifierMap__', code) : null;
+          if (Render) {
             Render.toString = function () {
-                return mainCode;
-            }
-            return Render;
+              return mainCode;
+            };
+          }
+          return Render;
         } catch(e) {
-            e.temp = 'function anonymous(__data__, __modifierMap__) {' + code + '}';
-            throw e;
-        }  
+          e.temp = `function anonymous(__data__, __modifierMap__) { ${code} }`;
+          throw e;
+        }
     }
     function compile(tpl, opt) {
         opt = clone(o, opt);
