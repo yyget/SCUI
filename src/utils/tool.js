@@ -99,13 +99,11 @@ tool.cookie = {
 		}
 		document.cookie = cookieStr
 	},
-	get(name){
-		var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"))
-		if(arr != null){
-			return unescape(arr[2])
-		}else{
-			return null
-		}
+    //移除废弃的unescape函数
+    get(name) {
+		const pattern = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+		const match = document.cookie.match(pattern);
+		return match ? decodeURIComponent(match[2]) : null;
 	},
 	remove(name){
 		var exp = new Date()
