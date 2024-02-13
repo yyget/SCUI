@@ -275,6 +275,8 @@
 				this.nextMenu = this.filterUrl(route.children);
 				if((!route.children || route.children.length == 0) && route.component){
 					this.$router.push({path: route.path})
+				} else if (route.redirect) {
+					this.$router.push({path: route.redirect})
 				}
 			},
 			//转换外部链接的路由
