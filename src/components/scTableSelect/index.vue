@@ -141,7 +141,7 @@
 			autoCurrentLabel(){
 				this.$nextTick(() => {
 					if(this.multiple){
-						this.$refs.select.selected.forEach(item => {
+						this.$refs.select.selected?.forEach(item => {
 							item.currentLabel = item.value[this.defaultProps.label]
 						})
 					}else{
